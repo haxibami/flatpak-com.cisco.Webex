@@ -34,7 +34,7 @@ jobs:
             yq -i '.modules[2].sources[0].sha256 = "${{ steps.newbin.outputs.checksum }}"' com.cisco.Webex.yaml
             yq -i '.modules[2].sources[0].size = ${{ fromJSON(steps.newbin.outputs.size) }}' com.cisco.Webex.yaml
       - name: Create pull request
-        if: ${{ steps.prevbin.outputs.result }} != ${{ steps.newbin.outputs.checksum }}
+        if: steps.prevbin.outputs.result != steps.newbin.outputs.checksum
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
