@@ -30,8 +30,8 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: |
-            NEWCHECKSUM=${{ steps.newbin.outputs.result }}
-            FILESIZE=${{ fromJSON(steps.newbin.outputs.size) }}
+            NEWCHECKSUM="${{ steps.newbin.outputs.result }}"
+            FILESIZE="${{ fromJSON(steps.newbin.outputs.size) }}"
             yq -i '.modules[2].sources[0].sha256 = env(NEWCHECKSUM)' com.cisco.Webex.yaml
             yq -i '.modules[2].sources[0].size = env(FILESIZE)' com.cisco.Webex.yaml
       - name: Create pull request
