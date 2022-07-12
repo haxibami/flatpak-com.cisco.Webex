@@ -1,0 +1,84 @@
+app-id: com.cisco.Webex
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: webex
+tags:
+  - proprietary
+finish-args:
+  - "--share=ipc"
+  - "--socket=x11"
+    # - "--socket=wayland" # currently sign-in doesn't work on wayland
+  - "--socket=pulseaudio"
+  - "--share=network"
+  - "--device=all"
+  - "--own-name=org.kde.*" # required to display tray icons
+  - "--talk-name=org.freedesktop.ScreenSaver"
+  - "--talk-name=org.freedesktop.Notifications"
+  - "--talk-name=org.freedesktop.secrets"
+modules:
+  - name: libsecret
+    buildsystem: meson
+    config-opts:
+      - "-Dmanpage=false"
+      - "-Dvapi=false"
+      - "-Dgtk_doc=false"
+    cleanup:
+      - "/bin"
+      - "/include"
+      - "/lib/pkgconfig"
+      - "/share/gir-1.0"
+      - "/share/man"
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libsecret/0.20/libsecret-0.20.5.tar.xz
+        sha256: 3fb3ce340fcd7db54d87c893e69bfc2b1f6e4d4b279065ffe66dac9f0fd12b4d
+        x-checker-data:
+          type: gnome
+          name: libsecret
+          stable-only: true
+  - name: zypak
+    sources:
+      - type: git
+        url: https://github.com/refi64/zypak
+        branch: webex
+  - name: webex
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 webex.sh /app/bin/webex
+      - install -Dm755 apply_extra.sh /app/bin/apply_extra
+      - install -Dm644 ${FLATPAK_ID}.appdata.xml -t /app/share/appdata/
+      - install -Dm644 com.cisco.Webex.desktop -t /app/share/applications/
+      - install -Dm644 ${FLATPAK_ID}.64.png /app/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
+      - install -Dm644 ${FLATPAK_ID}.96.png /app/share/icons/hicolor/96x96/apps/${FLATPAK_ID}.png
+      - install -Dm644 ${FLATPAK_ID}.128.png /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      - install -Dm644 ${FLATPAK_ID}.256.png /app/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+        # - touch /app/extra/deb.dat
+    sources:
+      - type: extra-data
+        filename: webex.deb
+        only-arches:
+          - x86_64
+        url: https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
+        sha256: 8d4496c1740ad5687bdec227235f30fd029256b04b47df35f8b26a741bdd5be2
+        size: 299086350
+      - type: script
+        dest-filename: webex.sh
+        commands:
+          - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+          - export ZYPAK_QUIRKS=webex-trampoline
+          - exec zypak-wrapper /app/extra/bin/CiscoCollabHost "$@"
+      - type: file
+        path: apply_extra.sh
+      - type: file
+        path: com.cisco.Webex.appdata.xml
+      - type: file
+        path: com.cisco.Webex.desktop
+      - type: file
+        path: icons/com.cisco.Webex.64.png
+      - type: file
+        path: icons/com.cisco.Webex.96.png
+      - type: file
+        path: icons/com.cisco.Webex.128.png
+      - type: file
+        path: icons/com.cisco.Webex.256.png

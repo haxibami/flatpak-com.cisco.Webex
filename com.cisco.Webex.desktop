@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Webex
+Comment=Webex Video Conference
+GenericName=Webex Client for Linux
+Exec=webex %U
+Icon=com.cisco.Webex
+Terminal=false
+Type=Application
+Categories=Utility;Application
+MimeType=x-scheme-handler/webexteams;x-scheme-handler/ciscospark;x-scheme-handler/webex
+StartupWMClass=Webex

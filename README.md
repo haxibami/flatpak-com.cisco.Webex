@@ -13,9 +13,6 @@ This project attempts to repackage the Linux package as a Flatpak so that it can
 be used on any modern Linux distro.
 
 ## Building
-| 🚨   |
-| :--- |
-| This package doesn't currently work! |
 
 In order to build this package, you will need the following:
 
@@ -32,14 +29,10 @@ In order to build this package, you will need the following:
 
 ## Known Issues
 
-* [Zypak
-  wrapper](https://github.com/chrispoupart/flatpak-com.cisco.Webex/issues/1) not
+- [Zypak wrapper](https://github.com/chrispoupart/flatpak-com.cisco.Webex/issues/1) not
   work with the Webex forking method. Hopefully, this will be resolved in Zypak
   soon.
-* Cisco does not version their webex packages. This means that periodically, the
+- Cisco does not version their webex packages in download URL. This means that periodically, the
   build will fail due to checksum mismatches, at which point we need to update
   the checksums, as well as extract the Webex build number from the Debian
   package and populate that in our scripts.
-* Cisco has botched the `.desktop` spec by placing the release number of Webex
-  in the `version` key, instead of the intended spec version. (fixed in
-  `webex-build.sh`).
