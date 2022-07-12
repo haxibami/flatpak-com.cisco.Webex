@@ -8,7 +8,7 @@ tags:
 finish-args:
   - "--share=ipc"
   - "--socket=x11"
-    # - "--socket=wayland" # currently sign-in doesn't work on wayland
+  # - "--socket=wayland" # currently sign-in doesn't work on wayland
   - "--socket=pulseaudio"
   - "--share=network"
   - "--device=all"
@@ -53,7 +53,7 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.96.png /app/share/icons/hicolor/96x96/apps/${FLATPAK_ID}.png
       - install -Dm644 ${FLATPAK_ID}.128.png /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
       - install -Dm644 ${FLATPAK_ID}.256.png /app/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-        # - touch /app/extra/deb.dat
+      # - touch /app/extra/deb.dat
     sources:
       - type: extra-data
         filename: webex.deb
