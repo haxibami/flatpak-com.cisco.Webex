@@ -23,14 +23,14 @@ jobs:
         run: |
           curl -O https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
           FILESIZE=$(du -b Webex.deb | awk '{print $1}')
+          echo ::set-output name=checksum::${{ hashFiles('Webex.deb') }}
           echo "::set-output name=size::$FILESIZE"
-          echo "::set-output name=checksum::${{ hashFiles('Webex.deb') }}"
       - name: Compare two checksums and update if they are different
         if: ${{ steps.prevbin.outputs.result }} != ${{ steps.newbin.outputs.checksum }}
         uses: mikefarah/yq@master
         with:
           cmd: |
-            yq -i '.modules[2].sources[0].sha256 = ${{ steps.newbin.outputs.checksum }}' com.cisco.Webex.yaml
+            yq -i '.modules[2].sources[0].sha256 = "${{ steps.newbin.outputs.checksum }}"' com.cisco.Webex.yaml
             yq -i '.modules[2].sources[0].size = ${{ fromJSON(steps.newbin.outputs.size) }}' com.cisco.Webex.yaml
       - name: Create pull request
         if: ${{ steps.prevbin.outputs.result }} != ${{ steps.newbin.outputs.checksum }}
