@@ -19,4 +19,6 @@ In order to build this package, you will need the following:
 
 ## Known Issues
 
-- Cisco does not version their webex packages in download URL. This means that periodically, the build will fail due to checksum mismatches, at which point we need to update the checksums, as well as extract the Webex build number from the Debian package and populate that in our scripts.
+- Cisco does not version their webex packages and download URL is constant. This means that periodically, the build will fail due to checksum mismatches, though new release is tracked hourly by Github Actions.
+
+- WebCam does not work with HD option enabled.
