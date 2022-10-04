@@ -3,14 +3,14 @@
 name: Check for webex .deb updates
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: "0 * * * *"
   workflow_dispatch: {}
 jobs:
   webex-bin-update-checker:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [ main, dev ]
+        branch: [main, dev]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -18,8 +18,8 @@ jobs:
       - name: Setup tools
         run: |
           sudo apt update
-          sudo apt install -y xmlstarlet
-      - name: Get previous .deb checksum 
+          sudo apt install -y xmlstarlet libarchive-tools
+      - name: Get previous .deb checksum
         id: prevdeb
         uses: mikefarah/yq@master
         with:
