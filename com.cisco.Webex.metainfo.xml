@@ -9,20 +9,17 @@
     <p>
       Webex by Cisco is the leading enterprise solution for video conferencing, online meetings, screen share, and webinars. Web conferencing, cloud calling, and equipment.
     </p>
-
     <p>
       NOTE: This wrapper is not verified by, affiliated with, or supported by Cisco.
     </p>
   </description>
   <launchable type="desktop-id">com.cisco.Webex.desktop</launchable>
-
   <developer_name>Cisco</developer_name>
   <url type="homepage">https://www.webex.com/downloads.html</url>
-
   <releases>
-    <release version="42.7.0.22904" date="2022-07-11" />
+    <release version="42.10.0.24000" date="2022-10-25"/>
+    <release version="42.7.0.22904" date="2022-07-11"/>
   </releases>
-
   <content_rating type="oars-1.1">
     <content_attribute id="social-chat">intense</content_attribute>
     <content_attribute id="social-info">intense</content_attribute>

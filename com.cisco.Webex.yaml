@@ -8,7 +8,7 @@ tags:
 finish-args:
   - --share=ipc
   - --socket=x11
-    # - --socket=wayland # currently sign-in doesn't work on wayland
+  # - --socket=wayland # currently sign-in doesn't work on wayland
   - --socket=pulseaudio
   - --share=network
   - --device=all
@@ -53,15 +53,15 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.96.png /app/share/icons/hicolor/96x96/apps/${FLATPAK_ID}.png
       - install -Dm644 ${FLATPAK_ID}.128.png /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
       - install -Dm644 ${FLATPAK_ID}.256.png /app/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-        # - touch /app/extra/deb.dat
+      # - touch /app/extra/deb.dat
     sources:
       - type: extra-data
         filename: webex.deb
         only-arches:
           - x86_64
         url: https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
-        sha256: 8d4496c1740ad5687bdec227235f30fd029256b04b47df35f8b26a741bdd5be2
-        size: 299086350
+        sha256: 076e6af05c087b266c9ece0c5809643810f692b66092453b4bc07beec3725256
+        size: 272701458
       - type: script
         dest-filename: webex.sh
         commands:
