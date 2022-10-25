@@ -1,34 +1,34 @@
 app-id: com.cisco.Webex
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 command: webex
 tags:
   - proprietary
 finish-args:
-  - "--share=ipc"
-  - "--socket=x11"
-    # - "--socket=wayland" # currently sign-in doesn't work on wayland
-  - "--socket=pulseaudio"
-  - "--share=network"
-  - "--device=all"
-  - "--own-name=org.kde.*" # required to display tray icons
-  - "--talk-name=org.freedesktop.ScreenSaver"
-  - "--talk-name=org.freedesktop.Notifications"
-  - "--talk-name=org.freedesktop.secrets"
+  - --share=ipc
+  - --socket=x11
+    # - --socket=wayland # currently sign-in doesn't work on wayland
+  - --socket=pulseaudio
+  - --share=network
+  - --device=all
+  - --own-name=org.kde.* # required to display tray icons
+  - --talk-name=org.freedesktop.ScreenSaver
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
 modules:
   - name: libsecret
     buildsystem: meson
     config-opts:
-      - "-Dmanpage=false"
-      - "-Dvapi=false"
-      - "-Dgtk_doc=false"
+      - -Dmanpage=false
+      - -Dvapi=false
+      - -Dgtk_doc=false
     cleanup:
-      - "/bin"
-      - "/include"
-      - "/lib/pkgconfig"
-      - "/share/gir-1.0"
-      - "/share/man"
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/gir-1.0
+      - /share/man
     sources:
       - type: archive
         url: https://download.gnome.org/sources/libsecret/0.20/libsecret-0.20.5.tar.xz
