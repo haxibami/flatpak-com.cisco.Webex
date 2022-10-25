@@ -44,7 +44,7 @@ jobs:
           cmd: >
             yq -i '
               .modules[2].sources[0].sha256 = "${{ steps.newdeb.outputs.checksum }}" |
-              .modules[2].sources[0].size = ${{ fromJSON(steps.newdeb.outputs.size) }}
+              .modules[2].sources[0].size = ${{ steps.newdeb.outputs.size }}
             ' com.cisco.Webex.yaml
       - name: Update version & release date in metainfo XML
         if: steps.prevdeb.outputs.result != steps.newdeb.outputs.checksum
