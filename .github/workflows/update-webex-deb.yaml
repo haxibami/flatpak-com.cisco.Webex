@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [main, dev]
+        branch: [dev]
     steps:
       - uses: actions/checkout@v3
         with:
