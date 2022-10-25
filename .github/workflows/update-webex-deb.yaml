@@ -21,7 +21,7 @@ jobs:
           sudo apt install -y xmlstarlet libarchive-tools
       - name: Get previous .deb checksum
         id: prevdeb
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@v4.28.2
         with:
           cmd: >
             yq '.modules[2].sources[0].sha256' com.cisco.Webex.yaml
@@ -33,13 +33,13 @@ jobs:
           CHECKSUM=$(sha256sum Webex.deb | awk '{print $1}')
           DATE=$(date +'%Y-%m-%d')
           VERSION=$(bsdtar -Oxf Webex.deb 'control.tar.gz' | bsdtar -Oxf - control | grep Version | awk '{print $2}')
-          echo "::set-output name=size::$SIZE"
-          echo "::set-output name=checksum::$CHECKSUM"
-          echo "::set-output name=date::$DATE"
-          echo "::set-output name=version::$VERSION"
+          echo "{size}={$SIZE}" >> $GITHUB_OUTPUT
+          echo "{checksum}={$CHECKSUM}" >> $GITHUB_OUTPUT
+          echo "{date}={$DATE}" >> $GITHUB_OUTPUT
+          echo "{version}={$VERSION}" >> $GITHUB_OUTPUT
       - name: Update checksum & filesize in manifest yaml
         if: steps.prevdeb.outputs.result != steps.newdeb.outputs.checksum
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@v4.28.2
         with:
           cmd: |
             yq -i '.modules[2].sources[0].sha256 = "${{ steps.newdeb.outputs.checksum }}"' com.cisco.Webex.yaml
@@ -48,7 +48,7 @@ jobs:
         if: steps.prevdeb.outputs.result != steps.newdeb.outputs.checksum
         run: >
           xmlstarlet ed -L
-            -i '/component/releases/release[1]' -t elem -n release -v
+            -i '/component/releases/release[1]' -t elem -n release
             -i '/component/releases/release[1]' -t attr -n version
               -v "${{ steps.newdeb.outputs.version }}"
             -i '/component/releases/release[1]' -t attr -n date
