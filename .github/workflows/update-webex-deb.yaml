@@ -50,12 +50,12 @@ jobs:
         if: steps.prevdeb.outputs.result != steps.newdeb.outputs.checksum
         run: >
           xmlstarlet ed -L
-            -i '/component/releases/release[1]' -t elem -n release
-            -i '/component/releases/release[1]' -t attr -n version
-              -v "${{ steps.newdeb.outputs.version }}"
-            -i '/component/releases/release[1]' -t attr -n date
-              -v "${{ steps.newdeb.outputs.date }}"
-            com.cisco.Webex.metainfo.xml
+          -i '/component/releases/release[1]' -t elem -n release
+          -i '/component/releases/release[1]' -t attr -n version
+          -v "${{ steps.newdeb.outputs.version }}"
+          -i '/component/releases/release[1]' -t attr -n date
+          -v "${{ steps.newdeb.outputs.date }}"
+          com.cisco.Webex.metainfo.xml
       - name: Create pull request
         if: steps.prevdeb.outputs.result != steps.newdeb.outputs.checksum
         uses: peter-evans/create-pull-request@v4
