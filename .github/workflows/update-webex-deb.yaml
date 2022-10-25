@@ -33,10 +33,10 @@ jobs:
           CHECKSUM=$(sha256sum Webex.deb | awk '{print $1}')
           DATE=$(date +'%Y-%m-%d')
           VERSION=$(bsdtar -Oxf Webex.deb 'control.tar.gz' | bsdtar -Oxf - control | grep Version | awk '{print $2}')
-          echo "{size}={$SIZE}" >> $GITHUB_OUTPUT
-          echo "{checksum}={$CHECKSUM}" >> $GITHUB_OUTPUT
-          echo "{date}={$DATE}" >> $GITHUB_OUTPUT
-          echo "{version}={$VERSION}" >> $GITHUB_OUTPUT
+          echo "size=$SIZE" >> $GITHUB_OUTPUT
+          echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Update checksum & filesize in manifest yaml
         if: steps.prevdeb.outputs.result != steps.newdeb.outputs.checksum
         uses: mikefarah/yq@v4.28.2
