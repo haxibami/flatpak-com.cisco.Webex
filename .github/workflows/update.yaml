@@ -1,14 +1,14 @@
 name: Check for updates
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: "0 15 * * 1"
   workflow_dispatch: {}
 jobs:
   flatpak-external-data-checker:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [ main, dev ]
+        branch: [main, dev]
     steps:
       - uses: actions/checkout@v3
         with:

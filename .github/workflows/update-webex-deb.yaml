@@ -3,7 +3,7 @@
 name: Check for webex .deb updates
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 15 * * 1"
   workflow_dispatch: {}
 jobs:
   webex-bin-update-checker:
