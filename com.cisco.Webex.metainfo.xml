@@ -17,6 +17,7 @@
   <developer_name>Cisco</developer_name>
   <url type="homepage">https://www.webex.com/downloads.html</url>
   <releases>
+    <release version="42.12.0.24485" date="2022-12-19"/>
     <release version="42.10.0.24000" date="2022-10-25"/>
     <release version="42.7.0.22904" date="2022-07-11"/>
   </releases>
