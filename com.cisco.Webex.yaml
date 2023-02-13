@@ -1,6 +1,6 @@
 app-id: com.cisco.Webex
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: webex
 tags:
@@ -60,8 +60,8 @@ modules:
         only-arches:
           - x86_64
         url: https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
-        sha256: c119963483717f37c26785c9abf3e6170c048b6ee728df4f7727b4135a26d82e
-        size: 278762476
+        sha256: 2cfcd0ead71fdc6e1035ef82aaf172785260457b8dd7aa5e2d2bc79e2303a50b
+        size: 303145024
       - type: script
         dest-filename: webex.sh
         commands:
