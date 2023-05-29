@@ -60,8 +60,8 @@ modules:
         only-arches:
           - x86_64
         url: https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
-        sha256: c9ad4db4e947e34d592aa8b86220082fb63f5b5dfb257212364faa9d157da247
-        size: 307673444
+        sha256: b55d6d445640de9c928d09bd44c9d9b31409651b6d662dda14ff2c8dedcbee53
+        size: 308193408
       - type: script
         dest-filename: webex.sh
         commands:
